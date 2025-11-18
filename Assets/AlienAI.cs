@@ -46,6 +46,7 @@ public class AlienAI : MonoBehaviour
             GoToNextPatrolPoint();
         }
 
+        Debug.Log($"CAN SEE PLAYER: {CanSeePlayer(distanceToPlayer)} + slur");
         // Continue patrolling if not chasing
         if (!chasingPlayer && !agent.pathPending && agent.remainingDistance < 0.5f)
         {
@@ -56,15 +57,16 @@ public class AlienAI : MonoBehaviour
     bool CanSeePlayer(float distance)
     {
         if (distance > detectionRadius) return false;
-
-        Vector3 directionToPlayer = (player.position - transform.position).normalized;
+        Vector3 directionToPlayer = (player.position - transform.position);//.normalized;
         float angle = Vector3.Angle(transform.forward, directionToPlayer);
 
         if (angle < fieldOfView * 0.5f)
         {
+
             // Check line of sight
-            if (Physics.Raycast(transform.position + Vector3.up, directionToPlayer, out RaycastHit hit, detectionRadius))
+            if (Physics.Raycast(transform.position, directionToPlayer, out RaycastHit hit, detectionRadius))
             {
+                
                 return hit.collider.CompareTag("Player");
             }
         }

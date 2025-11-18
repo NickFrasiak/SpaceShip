@@ -9595,7 +9595,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 434905609701813055, guid: ee62504fd848ec34dba5af6ba5c60421, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.131
+      value: -0.667
       objectReference: {fileID: 0}
     - target: {fileID: 434905609701813055, guid: ee62504fd848ec34dba5af6ba5c60421, type: 3}
       propertyPath: m_LocalRotation.w
@@ -12632,7 +12632,7 @@ MonoBehaviour:
   - {fileID: 858927658}
   - {fileID: 1285608090}
   patrolSpeed: 2
-  detectionRadius: 20
+  detectionRadius: 10
   fieldOfView: 90
   chaseSpeed: 4
 --- !u!136 &1560494897
@@ -12678,7 +12678,7 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 0
-  m_WalkableMask: 4294967295
+  m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4
 --- !u!1 &1592301283
 GameObject:
@@ -13358,6 +13358,34 @@ Transform:
   - {fileID: 2024666314}
   m_Father: {fileID: 1343808469}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1716100126 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
+  m_PrefabInstance: {fileID: 2140331857}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &1716100131
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1716100126}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1719134888
 GameObject:
   m_ObjectHideFlags: 0
@@ -16405,6 +16433,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
       propertyPath: FlashLight
       value: 
@@ -16416,6 +16448,9 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 159150466}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1716100131}
     - targetCorrespondingSourceObject: {fileID: 100002, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 581242906}
@@ -17015,7 +17050,8 @@ GameObject:
   - component: {fileID: 3605451227283411768}
   - component: {fileID: 3156186509047271650}
   - component: {fileID: 6886459128296837933}
-  m_Layer: 0
+  - component: {fileID: 6886459128296837934}
+  m_Layer: 3
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21563,6 +21599,37 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4068373912626513877, guid: 7205a09d0a5d7ab459201ba424c7e296, type: 3}
+--- !u!114 &6886459128296837934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 709947647293029584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.16666667
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 23800000, guid: 906018682a7a1404386a69fd6f6d201a, type: 2}
+  m_BuildHeightMesh: 0
 --- !u!33 &6918779320917211150
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -22894,7 +22961,7 @@ GameObject:
   - component: {fileID: 8431137049970111449}
   - component: {fileID: 7655399246274556809}
   - component: {fileID: 6582875732969181287}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: floor 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
