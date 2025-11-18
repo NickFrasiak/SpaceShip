@@ -2,6 +2,8 @@ using System;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 using UnityStandardAssets.Utility;
+using UnityEngine.UI;
+
 using Random = UnityEngine.Random;
 
 namespace UnityStandardAssets.Characters.FirstPerson
@@ -41,8 +43,16 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private float m_NextStep;
         private bool m_Jumping;
         private AudioSource m_AudioSource;
+
+
         private bool isFlashOn = false;
+        private bool canUseFlash = true;
+
         public GameObject FlashLight;
+        public Slider flashlightSlider;
+        public float flashlightDepleteAmount = 10f;
+        private bool isFlashRecharging = false;
+
 
         // Use this for initialization
         private void Start()
@@ -57,18 +67,17 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_Jumping = false;
             m_AudioSource = GetComponent<AudioSource>();
 			m_MouseLook.Init(transform , m_Camera.transform);
+
+            flashlightSlider.value = 100f;
         }
 
 
         // Update is called once per frame
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                isFlashOn = !isFlashOn;
 
-            }
-            FlashLight.SetActive(isFlashOn);
+            HandleFlashlight();
+            
             RotateView();
             // the jump state needs to read here to make sure it is not missed
             if (!m_Jump)
@@ -91,6 +100,39 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_PreviouslyGrounded = m_CharacterController.isGrounded;
         }
 
+        private void HandleFlashlight()
+        {
+            if (Input.GetKeyDown(KeyCode.E) && canUseFlash)
+            {
+                isFlashOn = !isFlashOn;
+            }
+
+            FlashLight.SetActive(isFlashOn);
+
+            if (isFlashOn)
+            {
+                flashlightSlider.value -= flashlightDepleteAmount * Time.deltaTime;
+
+                if (flashlightSlider.value < 10f)
+                {
+                    isFlashRecharging = true;
+                }
+            }
+
+            if (isFlashRecharging)
+            {
+                isFlashOn = false;
+                canUseFlash = false;
+                flashlightSlider.value += flashlightDepleteAmount * Time.deltaTime;
+            }
+
+            if (flashlightSlider.value > 90f)
+            {
+                isFlashRecharging = false;
+                canUseFlash = true;
+            }
+
+        }
 
         private void PlayLandingSound()
         {

@@ -46,7 +46,6 @@ public class AlienAI : MonoBehaviour
             GoToNextPatrolPoint();
         }
 
-        Debug.Log($"CAN SEE PLAYER: {CanSeePlayer(distanceToPlayer)} + slur");
         // Continue patrolling if not chasing
         if (!chasingPlayer && !agent.pathPending && agent.remainingDistance < 0.5f)
         {
